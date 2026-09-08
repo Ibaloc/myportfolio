@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects — Eliott</title>
+  <title>Moe Projects</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet"/>
@@ -25,8 +25,49 @@
       .img{
         height: auto !important;
       }
-<style>
-.bor
+  
+    *,*::before,*::after{box-sizing:border-box}
+      html,body{font-family:'DM Sans',sans-serif}
+      h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
+      body{transition:background-color .3s,color .3s}
+      
+      /* noise overlay */
+      body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+      
+      /* scrollbar */
+      ::-webkit-scrollbar{width:5px}
+      ::-webkit-scrollbar-track{background:transparent}
+      ::-webkit-scrollbar-thumb{background:rgb(45 83 235); border-radius:99px}
+      
+      /* reveal on scroll */
+      .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+      .reveal.in{opacity:1;transform:none}
+      .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+      
+      /* nav underline animation */
+      .nl{position:relative}
+      .nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+      .nl:hover::after,.nl.on::after{width:100%}
+      .nl.on{font-weight:500}
+      
+      /* shimmer button */
+      .shimmer{position:relative;overflow:hidden}
+      .shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+      .shimmer:hover::after{left:160%}
+      
+      /* photo frames */
+      .pf{overflow:hidden;background:#d4d4d8}
+      .pf img{width:100%;height:100%;object-fit:cover;display:block}
+      
+      /* card hover */
+      .card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+      .card-h:hover{transform:translateY(-4px)}
+      
+      /* skill tag */
+      .stag{transition:border-color .18s}
+      
+      [x-cloak]{display:none!important}
     </style>
 
   <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['PT Sans','sans-serif'],body:['DM Sans','sans-serif']},colors:{accent:'#FF6B2B','accent-light':'#FF8F5C'}}}}</script>
@@ -45,7 +86,7 @@
     .btn-primary{position:relative;overflow:hidden;}
     .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1);}
     .btn-primary:hover::after{left:160%;}
-    [x-cloak]{display:none!important;}
+    [x-cloak]{display:none!important;}zzz
     .photo-frame{position:relative;overflow:hidden;background:#e4e4e7;}
     .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
     .project-card{transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .2s;}
@@ -61,7 +102,7 @@
         <span class="text-zinc-900 dark:text-white">Mo</span><span class="text-accent">e</span>
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <li><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Background</a></li>
+        <li hidden><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Background</a></li>
         <li><a href="projects.html" class="nav-link text-accent font-medium">Work</a></li>
         <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">About</a></li>
         <li><a href="index.html#contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Contact</a></li>
@@ -79,7 +120,7 @@
     </nav>
     <div x-show="mobileMenu" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
       <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-        <li><a href="index.html#services" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Background</a></li>
+        <li hidden><a href="index.html#services" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Background</a></li>
         <li><a href="projects.html" class="block text-accent font-medium">Work</a></li>
         <li><a href="index.html#about" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">About</a></li>
         <li><a href="index.html#contact" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Contact</a></li>
@@ -109,13 +150,6 @@
 
     <section class="pb-24">
       <div class="max-w-6xl mx-auto px-6">
-        <!--
-          CORRECTIF : on itere sur TOUS les projets, x-show + x-transition gerent
-          la visibilite de chaque carte. L'ancienne version utilisait x-for sur
-          filteredProjects (computed), ce qui forcait un re-render complet du DOM
-          a chaque changement de filtre — detruisant les classes .reveal et cachant
-          tout le contenu.
-        -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <template x-for="p in allProjects" :key="p.id">
             <div
@@ -152,11 +186,11 @@
   </main>
 
   <footer class="border-t border-zinc-100 dark:border-zinc-900">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Eliott. All rights reserved.</p>
-      <p class="text-xs text-zinc-500">Built with Tailwind CSS &amp; Alpine.js</p>
-    </div>
-  </footer>
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-zinc-400">© <span id="yr"></span> Moe. All rights reserved.</p>
+        
+        </div>
+      </footer>
 
   <script>
     function projects() {
@@ -174,16 +208,16 @@
         ],
 
         allProjects: [
-          { id:1,  title:'Procurement Analytics Portal',  category:'Mendix',      categoryLabel:'Mendix',         tags:['Mendix','Oracle Database', 'Manufacturing'], year:'2025', desc:'Complete development for storage of excel reports across Worldwide Procurement and Logistics with automated emails on the owners of the site notifying if there is new, updated, or deleted file(s) in the system.', img:'img/JRETS.png'},
-          { id:2,  title:'Internal Control Checklist (ICC)',    category:'Automation',   categoryLabel:'Automation', tags:['Automation', 'Monday.com', 'Manufacturing'], year:'2026', desc:'Migrated the system from Mendix platform to Monday.com with automated emails on series of approvers based on the value of Region.', img:'img/JRETS.png'},
-          { id:3,  title:'SharePoint', category:'Automation',    categoryLabel:'Automation',       tags:['Automation','SharePoint', 'Manufacturing'], year:'2023 - 2026', desc:'Troubleshooting, correcting workflows, creation of new project/site/workflows across the Procurement and Logistics SP sites.', img:'img/JRETS.png'},
-          { id:4,  title:'Academic Management System',    category:'ASP.NET C#',   categoryLabel:'ASP.NET C#', tags:['ASP.NET C#','Academic Institution'], year:'2024', desc:'Conversion-focused landing page for a proptech startup entering the French market.', img:'img/JRETS.png'},
-          { id:5,  title:'Job Request Ticketing System', category:'ASP.NET C#',      categoryLabel:'ASP.NET C#',         tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2024', desc:'Data visualisation dashboard for a B2B analytics platform. Designed for clarity at high data density.', img:'img/JRETS.png'},
-          { id:6,  title:'Identification Forwarding System', category:'ASP.NET C#',      categoryLabel:'ASP.NET C#',         tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2024', desc:'Data visualisation dashboard for a B2B analytics platform. Designed for clarity at high data density.', img:'img/JRETS.png'},
-          { id:7,  title:'Requisition, Procurement and Inventory System',     category:'ASP.NET C#', categoryLabel:'ASP.NET C#',   tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Custom Shopify theme for a sustainable cosmetics brand. Mobile-first with high emphasis on product imagery.', img:'img/JRETS.png',  url:'case-study.html' },
-          { id:8,  title:'Pageant Voting System',      category:'ASP.NET C#',   categoryLabel:'ASP.NET C#', tags:['ASP.NET C#','Microsoft SQL','Academic Institution'],   year:'2023', desc:'App landing page for a mental wellness startup. Warm, accessible design with strong social proof.', img:'img/JRETS.png', url:'case-study.html' },
-          { id:9,  title:'Graduation Projection and Monitoring System',  category:'ASP.NET C#',    categoryLabel:'ASP.NET C#',       tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Full rebrand and website for a digital communications agency in Lyon.', img:'img/JRETS.png', url:'case-study.html' },
-          { id:10,  title:'Student Attendance Monitoring System',      category:'ASP.NET C#', categoryLabel:'ASP.NET C#',   tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Product page redesign and checkout optimisation for a DTC furniture brand. Reduced cart abandonment by 18%.', img:'img/JRETS.png',  url:'case-study.html' },
+          { id:1,  title:'Procurement Analytics Portal',  category:'Mendix',      categoryLabel:'Mendix',         tags:['Mendix','Oracle Database', 'Manufacturing'], year:'2025', desc:'Developed a low‑code analytics portal to collect, organize, and display procurement data and spending reports. Enabled quick access to real‑time insights, charts, and records; supported faster and better decision‑making. Integrated with existing data sources to keep information accurate and up‑to‑date.', img:'img/Mendix.jpg'},
+          { id:2,  title:'Internal Control Checklist (ICC)',    category:'Automation',   categoryLabel:'Automation', tags:['Automation', 'Monday.com', 'Manufacturing'], year:'2026', desc:'Built a centralized checklist & tracking system on Monday.com to standardize procurement processes and compliance checks. Automated status updates, approval routing, and task assignments; reduced manual follow‑ups and errors. Made control monitoring clear and easy for the whole team.', img:'img/Monday.jpg'},
+          { id:3,  title:'On-Premise SharePoint Sites', category:'Automation',    categoryLabel:'Automation',       tags:['Automation','SharePoint', 'Manufacturing'], year:'2023 - 2026', desc:'Designed, deployed, and managed enterprise SharePoint sites for document storage, collaboration, and workflows. Built custom portals, automated approval processes, and fixed workflow bugs; kept 99.9% system uptime. Standardized access, security, and governance; made daily operations smoother and more reliable.', img:'img/SharePoint.jpg'},
+          { id:4,  title:'Academic Management System',    category:'ASP.NET C#',   categoryLabel:'ASP.NET C#', tags:['ASP.NET C#','Academic Institution'], year:'2024', desc:'Full‑stack development using ASP.NET C#; manages student records, course offerings, grading, and academic workflows. Served 5,000+ students & 700+ staff; improved data accuracy and reduced manual processing time. Designed user‑friendly interface; trained users — achieved 95% adoption rate.', img:'img/AMS.jpg'},
+          { id:5,  title:'Job Request Ticketing System', category:'ASP.NET C#',      categoryLabel:'ASP.NET C#',         tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2024', desc:'Created centralized platform to receive, assign, track, and resolve IT & service requests. Improved response time, tracked performance, and ensured no request was missed or delayed.', img:'img/Ticketing.jpg'},
+          { id:6,  title:'Identification Forwarding System', category:'ASP.NET C#',      categoryLabel:'ASP.NET C#',         tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2024', desc:'Built automated system to process, track, and forward ID requests and issuance records. Eliminated manual logs, speed up turnaround time, and reduced lost or misplaced requests.', img:'img/ID.jpg'},
+          { id:7,  title:'Requisition, Procurement and Inventory System',     category:'ASP.NET C#', categoryLabel:'ASP.NET C#',   tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Developed end‑to‑end system for requesting items, purchasing, and stock monitoring. Kept inventory levels accurate, avoided shortages/overstock, and streamlined approval workflows.', img:'img/Inventory.jpg'},
+          { id:8,  title:'Pageant Voting System',      category:'ASP.NET C#',   categoryLabel:'ASP.NET C#', tags:['ASP.NET C#','Microsoft SQL','Academic Institution'],   year:'2023', desc:'Built secure, real‑time voting & result calculation system; handled live events smoothly and accurately. Designed simple interface for voters and easy management for admins.', img:'img/Voting.jpg' },
+          { id:9,  title:'Graduation Projection and Monitoring System',  category:'ASP.NET C#',    categoryLabel:'ASP.NET C#',       tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Developed system to manage graduation eligibility, student projection lists, documents, and ceremony planning. Automated calculations and reports; saved hours of manual work each graduation period.', img:'img/Graduation.jpg', url:'https://services.ubaguio.edu/graduation/' },
+          { id:10,  title:'Student Attendance Monitoring System',      category:'ASP.NET C#', categoryLabel:'ASP.NET C#',   tags:['ASP.NET C#','Microsoft SQL','Academic Institution'], year:'2023', desc:'Built system to record, track, and report daily attendance; supports both manual and automated entry. Generated real‑time reports for advisors and admin; improved compliance and data visibility.', img:'img/Attendance.jpg'},
         ],
 
         get visibleCount() {
@@ -198,6 +232,9 @@
           window.addEventListener('scroll', () => {
             this.scrolled = window.scrollY > 20;
           }, { passive: true });
+
+          // year
+          document.getElementById('yr').textContent = new Date().getFullYear();
 
           this.$nextTick(() => {
             const obs = new IntersectionObserver(entries => {
