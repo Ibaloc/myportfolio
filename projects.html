@@ -102,6 +102,7 @@
         <span class="text-zinc-900 dark:text-white">Mo</span><span class="text-accent">e</span>
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="index.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Home</a></li>
         <li><a href="index.html#background" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Background</a></li>
         <li><a href="projects.html" class="nav-link text-accent font-medium">Projects</a></li>
         <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">About</a></li>
@@ -120,6 +121,7 @@
     </nav>
     <div x-show="mobileMenu" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
       <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+        <li><a href="index.html" class="block text-zinc-700 dark:text-zinc-300">Home</a></li>
         <li><a href="index.html#background" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Background</a></li>
         <li><a href="projects.html" class="block text-accent font-medium">Projects</a></li>
         <li><a href="index.html#about" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">About</a></li>
@@ -150,7 +152,7 @@
 
     <section class="pb-24">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
           <template x-for="p in allProjects" :key="p.id">
             <div
               x-show="filter === 'all' || p.category === filter"
@@ -172,7 +174,6 @@
                   </div>
                   <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors" x-text="p.title"></h3>
                   <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4" x-text="p.desc"></p>
-                  
                 </div>
               </article>
             </div>
